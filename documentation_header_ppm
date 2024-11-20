@@ -1,0 +1,56 @@
+1. Structure
+  
+struct ppm_pixel
+Représente un pixel d'une image PPM.
+Champs :
+r: composante rouge du pixel (type unsigned char).
+g: composante verte du pixel (type unsigned char).
+b: composante bleue du pixel (type unsigned char).
+Cette structure permet de stocker les informations RGB d'un pixel.
+
+struct ppm_image
+Représente une image PPM.
+Champs :
+width: largeur de l'image en pixels (type unsigned int).
+height: hauteur de l'image en pixels (type unsigned int).
+px: un pointeur vers un tableau de pixels (struct ppm_pixel), représentant les pixels de l'image.
+Cela permet de représenter une image en tant que matrice de pixels où chaque pixel est une instance de ppm_pixel.
+
+2. Fonctions
+ppm_setpixel(struct ppm_pixel *px, unsigned char r, unsigned char g, unsigned char b)
+But : Définit la couleur d'un pixel.
+Entrées :
+px: pointeur vers un pixel (struct ppm_pixel).
+r, g, b: valeurs des composantes rouge, verte et bleue du pixel (de type unsigned char).
+Sortie : Aucun. La fonction modifie directement les valeurs du pixel.
+ppm_image_init(struct ppm_image *im, int w, int h)
+But : Initialise une image avec la largeur et la hauteur spécifiées et alloue de la mémoire pour les pixels.
+Entrées :
+im: pointeur vers une image (struct ppm_image).
+w, h: largeur et hauteur de l'image (type int).
+Sortie : Retourne un code de succès (généralement 0) ou une erreur (si l'allocation de mémoire échoue).
+ppm_image_release(struct ppm_image *im)
+But : Libère la mémoire allouée pour l'image.
+Entrées :
+im: pointeur vers l'image à libérer.
+Sortie : Retourne un code de succès (généralement 0).
+ppm_image_setpixel(struct ppm_image *im, int x, int y, unsigned char r, unsigned char g, unsigned char b)
+But : Définit la couleur d'un pixel à des coordonnées (x, y) dans l'image.
+Entrées :
+im: pointeur vers l'image.
+x, y: coordonnées du pixel à modifier dans l'image.
+r, g, b: valeurs RGB du pixel (type unsigned char).
+Sortie : Aucun. Cette fonction modifie directement le pixel à la position (x, y).
+ppm_image_dump(struct ppm_image *im, char *path)
+But : Sauvegarde l'image dans un fichier PPM au chemin spécifié.
+Entrées :
+im: pointeur vers l'image à enregistrer.
+path: chemin du fichier où l'image sera enregistrée.
+Sortie : Retourne un code de succès (généralement 0) ou une erreur si l'écriture du fichier échoue.
+
+4. Processus de Compilation et Création de l'Image
+
+Initialisation de l'image : Un objet ppm_image est créé et initialisé avec des dimensions spécifiques via ppm_image_init.
+Modification des pixels : Des pixels sont modifiés à des coordonnées spécifiques dans l'image en utilisant ppm_image_setpixel.
+Exportation de l'image : L'image est exportée sous forme de fichier .ppm via ppm_image_dump, créant ainsi un fichier test.ppm.
+Le fichier généré (test.ppm) suit le format PPM et peut être ouvert avec un éditeur d'images compatible avec ce format.
