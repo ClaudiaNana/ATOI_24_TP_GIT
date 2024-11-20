@@ -19,3 +19,6 @@
         makefile : le Makefile gèrer la compilation d'testet mandel, utlibppm.so
 
 3.      Documentation du header ppm.h
+
+        Ex0 2: reparer le code et se l'approprier
+    
