@@ -1,10 +1,18 @@
- Lignes 29–30 : Création d'une image PPM
-Explication : Une image vide au format PPM est créée avec les dimensions SIZEX x SIZEY. Si l’initialisation échoue, un message d’erreur est affiché, et le programme se termine.                                              2. Ligne 33 : Calcul du facteur de couleur                               Explication : Ce facteur ajuste les niveaux de gris des pixels en fonction du nombre maximal d’itérations.                                                                                                              Lignes 38–46 : Parcours des pixels avec des boucles imbriquées            Explication : Ces deux boucles parcourent chaque pixel de l’image, ligne par ligne. Chaque pixel est identifié par ses coordonnées (i, j).             4. Lignes 47–51 : Initialisation de variables pour Mandelbrot        Explication :
+Dans ce code, plusieurs étapes principales peuvent être identifiées :
 
-    iter compte le nombre d’itérations pour ce pixel.
-    c est la coordonnée complexe calculée à partir des coordonnées (i, j).
-    z est initialisé à 0 et sera modifié à chaque itération.                                                                                                 5. Lignes 58–65 : Boucle d’itérations de Mandelbrot               Explication :
+1. Lignes 29–30 : Création d’une image PPM. Cette étape initialise la structure `ppm_image` qui sera utilisée pour générer et stocker l'image représentant l'ensemble de Mandelbrot.
 
-    Cette boucle calcule si le point appartient à l’ensemble de Mandelbrot.
-    Elle continue jusqu’à ce que le module (mod) dépasse un seuil (TRSH) ou que le nombre maximal d’itérations soit atteint.
-    z est mis à jour à chaque itération avec une formule spécifique                6. Lignes 67–69 : Calcul de la couleur du pixel                    Explication : La couleur du pixel est déterminée en fonction du nombre d’itérations. Les valeurs sont converties en niveaux de gris.             7. Lignes 70–71 : Mise à jour du pixel dans l’image                      Explication : La couleur calculée est affectée au pixel (i, j) de l’image. Les trois composantes (rouge, vert, bleu) sont égales pour obtenir une image en niveaux de gris.                                             Lignes 74–76 : Sauvegarde de l’image                                   Explication : Une fois tous les pixels calculés, l’image est enregistrée dans un fichier PPM nommé m.ppm.                                          9. Lignes 78–79 : Libération de la mémoire                              Explication : La mémoire allouée pour l’image est libérée pour éviter les fuites mémoire.      
+2. Lignes 33–34 : Définition d’une référence de couleur (`colref`) pour convertir les itérations logarithmiques en valeurs de nuances de gris, facilitant ainsi la représentation visuelle.
+
+3. Lignes 36–45 : Deux boucles imbriquées parcourent chaque pixel de l'image (défini par les dimensions `SIZEX` et `SIZEY`). Chaque pixel est traité individuellement pour calculer son appartenance à l'ensemble de Mandelbrot.
+
+4. Lignes 47–57 : Initialisation des nombres complexes `c` et `z` pour effectuer les calculs itératifs. Ensuite, une boucle `while` calcule la trajectoire de chaque point complexe et vérifie si son module dépasse le seuil défini (`TRSH`). Si le seuil est dépassé, la boucle s'arrête.
+
+5. Lignes 59–60 : Conversion du nombre d'itérations en une nuance de gris et affectation de cette couleur au pixel correspondant dans l’image.
+
+6. Lignes 62–63 : L'image générée est sauvegardée au format `.ppm`, et les ressources utilisées pour l’image sont libérées.
+
+L’objectif global de ce code est de générer une visualisation de l'ensemble de Mandelbrot en calculant des itérations complexes pour chaque pixel, puis en convertissant ces calculs en valeurs de gris pour créer une image.
+
+
+
