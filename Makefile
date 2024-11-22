@@ -15,7 +15,7 @@ test: main.c libppm.so
 
 # Crée le programme Mandelbrot avec libppm.so
 mandel: mandel.c libppm.so
-	$(CC) $(CFLAGS) $(LDFLAGS) mandel.c -lppm -L. -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) mandel.c -lppm -L. -lm -o $@
 
 # Nettoie les fichiers binaires et les bibliothèques partagées
 clean:
