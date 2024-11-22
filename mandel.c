@@ -12,14 +12,12 @@
 
 double cx(int x)
 {
-    /* -2 ---> 1 */
     static const double qx = 3.0 / (double)SIZEX;
     return -2.0 +  x * qx;
 }
 
 double cy(int y)
 {
-    /* -1 ---> 1 */
     static const double qy = 2.0 / (double)SIZEY;
     return -1.0 + y * qy;
 }
@@ -55,12 +53,16 @@ int main(int argc, char *argv[])
                 iter++;
             }
 
-            int grey = colref * log(iter);
-            ppm_image_setpixel(&im, i, j, grey, grey, grey);
+            // Calcul des couleurs à partir du nombre d'itérations
+            unsigned char red = (iter * 255) / ITER;
+            unsigned char green = (iter * 255) / (ITER / 2);
+            unsigned char blue = (iter * 255) / (ITER / 3);
+
+            ppm_image_setpixel(&im, i, j, red, green, blue);
         }
     }
 
-    ppm_image_dump(&im, "m.ppm");
+    ppm_image_dump(&im, "mandelbrot.ppm");
     ppm_image_release(&im);
 
     return 0;
